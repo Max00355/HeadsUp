@@ -1,0 +1,15 @@
+{% extends "include.html" %}
+{% block body %}
+<center>
+    <h1>Create a Set</h1>
+    <form method = "POST">
+        <input type="text" name="words" placeholder="Words separated by commas ex: word1, word2, word3, etc..." style="padding:15px; width:50%;"/><br/>
+        <br/>
+        <input type="text" name="time" placeholder="Seconds per card. So if you expect the person to take 5 seconds per card put that." style="padding:15px; width:50%;"/>
+        <br/>
+        <br/>
+        <input type="submit" value="Create" style="width:50%; padding: 15px"/>
+    </form>
+</center>
+
+{% endblock %}

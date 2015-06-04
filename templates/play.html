@@ -1,0 +1,64 @@
+{% extends "include.html" %}
+{% block body %}
+<div id="game">
+    <center>
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <h1><div id="word"></div></h1>
+    <h6><div id="time"></div></h6>
+    </center>
+
+    <script>
+        var id = document.getElementById("time");
+        var game = document.getElementById("game");
+        var word = document.getElementById("word");
+        var words = {{ words | safe }}
+        var seconds = {{ seconds | safe }};
+        var index = 0
+        var win = false;
+
+        game.onclick = function(e) {
+            if (seconds == 0 || win) location.reload();
+            
+            else {
+               index ++;
+               if (index > words.length - 1) {
+                    win = true;
+                    alert("You Win!");
+                }
+
+               else {
+                    word.innerHTML = words[index];
+                        
+                }
+            }
+
+        }
+        function countDown() {
+            if (index > words.length - 1) {
+                word.innerHTML = "You Win!";
+            }
+            else
+                word.innerHTML = words[index];
+            if (seconds == 0 && !win) {
+               win = true;
+               alert("Time Up!");
+            } 
+            var minutesLeft = "00";
+            var secondsLeft = "00";
+
+            if (seconds == 0 || win) {
+                timeLeft = "Tap to play again."
+                id.innerHTML = timeLeft;
+            }
+            else {
+                if (seconds != 0 && !win){
+                    seconds--;
+                    id.innerHTML = seconds;
+                }
+            }   
+        }
+        countDown();
+        setInterval(countDown, 1000);
+    </script>
+</div>
+{% endblock %}
